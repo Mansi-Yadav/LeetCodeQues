@@ -9,7 +9,7 @@
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
-     ListNode* slow= head;
+     
         ListNode* temp= head;
         map<ListNode*,bool> hashmap;
         
@@ -22,13 +22,6 @@ public:
         }
         return NULL;
         
-//         while(fast->next!= NULL && fast->next->next !=NULL){
-//             slow= slow->next;
-//             fast= fast->next->next;
-            
-//             if(slow== fast)
-//                 return slow;
-//         }
-//         return NULL;
+
     }
 };
