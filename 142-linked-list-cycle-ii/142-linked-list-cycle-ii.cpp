@@ -8,7 +8,7 @@
  */
 class Solution {
 public:
-    ListNode* slove(ListNode* head){
+    ListNode* solve(ListNode* head){
         ListNode * slow= head;
         ListNode * fast= head;
         
@@ -25,8 +25,8 @@ public:
         if(head== NULL)
             return NULL;
        
-        ListNode* slow= slove(head);
-        //return NULL;
+        ListNode* slow= solve(head);
+      
         ListNode * temp= head;
         while(temp!=NULL && slow!=NULL ){
             if(slow == temp  )
