@@ -21,7 +21,7 @@ public:
         return slow;
     }
     
-    ListNode* reverse(ListNode* head){
+ListNode* reverse(ListNode* head){
         ListNode* prev=NULL;
         ListNode* curr= head;
         ListNode* forward;
@@ -34,7 +34,7 @@ public:
         }
         return prev;
     }
-    bool isPalindrome(ListNode* head) {
+bool isPalindrome(ListNode* head) {
         if(head->next== NULL|| head== NULL)
             return true;
         
