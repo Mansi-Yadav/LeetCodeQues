@@ -22,6 +22,7 @@ public:
     {
         vector<int> ans;
         func(0,0,arr,N, ans);
+        sort(ans.begin(), ans.end());
         return ans;
     }
 };
