@@ -1,38 +1,33 @@
 class Solution {
 public:
-    
-      void possiblepermute( vector<int> arr, int n,vector<vector<int>> &ans, vector<int> &ds , int freq[]){
+    void swap(int i, int idx, vector<int> &nums){
+        int temp= nums[i];
+        nums[i]= nums[idx];
+        nums[idx]= temp;
+    }
+    void func(int idx,vector<int>& nums,  vector<vector<int>>& ans ){
         
-        if(ds.size()==n){
+        if(idx == nums.size()){
+            vector<int> ds;
+            for(int i=0; i<nums.size(); i++){
+                ds.push_back(nums[i]);
+            }
             ans.push_back(ds);
-                return;
+            return ;
         }
-       for(int i=0; i<n; i++){
-           if(freq[i]==0){
-               ds.push_back(arr[i]);
-               freq[i]=1;
-               possiblepermute( arr, n, ans, ds, freq);
-               ds.pop_back();
-               freq[i]=0;
-           }
-       } 
+        
+        for(int i= idx; i<nums.size(); i++){
+            swap(i,idx, nums);
+            func(idx+1, nums, ans);
+            swap(i,idx, nums);
+        }
         
     }
     
     vector<vector<int>> permute(vector<int>& nums) {
-        int n= nums.size();
-      // int arr[n];
-      //   for(int i=0; i<n; i++){
-      //      arr[i]=i+1; 
-      //   }
-        
-         int freq[n];
-        for(int i=0; i<n; i++)
-            freq[i]=0;
-        
-        vector<int> ds;
-       vector<vector<int>> ans;
-        possiblepermute( nums, n, ans ,ds, freq);
+        vector<vector<int>> ans;
+         vector<int> ds;
+            func(0, nums, ans);
         return ans;
     }
 };
