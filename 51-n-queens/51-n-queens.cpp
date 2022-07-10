@@ -1,35 +1,5 @@
 class Solution {
-public:
-    
-    bool isSafe(int row, int col,vector<string> board, int n){
-        
-        int row1= row;
-        int col1= col;
-        while(row >=0 && col >=0){
-            if(board[row--][col--] =='Q')
-                return false;
-        }
-        
-        row= row1;
-        col= col1;
-        while(col>=0){
-            if(board[row][col--]=='Q')
-                return false;
-            //col--;
-        }
-        
-        row= row1;
-        col= col1;
-        while(row<n && col>=0){
-            if(board[row++][col--]=='Q')
-                return false;
-            //row++;
-            //col--;
-        }
-        return true;
-    }
-    
-    
+public: 
     void solve(int col,vector<string> board, vector<vector<string>>& ans, int n, vector<int>& leftRow, vector<int>& upperDiag, vector<int>& lowerDiag  ){
         if(col== n){
             ans.push_back(board);
