@@ -10,44 +10,36 @@ using namespace std;
 
 class Solution{
     public:
-    void solve(int i, int j, vector<vector<int>> &m, string str, vector<vector<int>> &vis,vector<string> &ans ){
+    void solve(int i, int j, vector<vector<int>> &m, string str, vector<vector<int>> &vis,vector<string> &ans, int di[], int dj[] ){
         int n= m.size();
         if(i == n-1 && j== n-1 ){
             ans.push_back(str);
             return ;
         }
         
-        if(i+1< n && !vis[i+1][j] && m[i+1][j] == 1){
-            vis[i][j]=1;
-            solve(i+1, j, m, str+'D', vis, ans);
-            vis[i][j]=0;
-        }
-        
-        if(j-1>=0 && !vis[i][j-1] && m[i][j-1] == 1){
-            vis[i][j]=1;
-            solve(i, j-1, m, str +'L', vis , ans);
-            vis[i][j]=0;
-        }
-        
-        if(j+1<n && !vis[i][j+1] && m[i][j+1] == 1){
-            vis[i][j]=1;
-            solve(i, j+1, m ,str+'R', vis, ans);
-            vis[i][j]=0;
-        }
-        
-        if(i-1>=0 && !vis[i-1][j] && m[i-1][j] ==1){
-            vis[i][j]=1;
-            solve(i-1, j, m, str+'U', vis, ans);
-            vis[i][j]=0;
-        }
+       string dir="DLRU";
+       for(int idx=0; idx<4; idx++){
+           int nexti= i+ di[idx];
+           int nextj= j+ dj[idx];
+           
+           if(nexti>=0 && nextj>=0 && nexti<n && nextj<n && !vis[nexti][nextj] && m[nexti][nextj] == 1){
+               vis[i][j]=1;
+               solve(nexti, nextj, m, str+ dir[idx], vis, ans, di,dj);
+               vis[i][j]=0;
+           }
+       }
     }
     
     
     vector<string> findPath(vector<vector<int>> &m, int n) {
         vector<vector<int>> vis(n, vector<int> (n,0));
         vector<string> ans;
+        int di[]={1,0,0,-1};
+        int dj[]= {0,-1,1,0};
+        
+        
         if(m[0][0] == 1)
-         solve(0, 0, m, "", vis, ans);
+         solve(0, 0, m, "", vis, ans,di, dj);
         return ans;
     }
 };
