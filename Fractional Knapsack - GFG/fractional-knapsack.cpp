@@ -41,8 +41,8 @@ class Solution
                 finalValue+=arr[i].value; 
             }
             else{
-                int remain= W-currWeight;
-                finalValue+=(((double)arr[i].value)/(double)arr[i].weight)* double(remain);
+                double remain= W-currWeight;
+                finalValue+=(((double)arr[i].value)/(double)arr[i].weight)* (remain);
                 break;
             }
             
