@@ -56,7 +56,7 @@ class Solution
             {
                 if(jobCompletionday[j] == -1)
                 {
-                    jobCompletionday[j]=i;
+                    jobCompletionday[j]=arr[i].id;
                     profit+=arr[i].profit;
                     cntJobs++;
                     break;
