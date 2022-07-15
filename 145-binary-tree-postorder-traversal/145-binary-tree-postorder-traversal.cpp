@@ -11,18 +11,30 @@
  */
 class Solution {
 public:
-    void func(TreeNode* root, vector<int> &ans){
-        if(root ==  NULL)
-            return;
-        
-        func(root->left, ans);
-        func(root->right, ans);
-        ans.push_back(root->val);
-    }
-    
     vector<int> postorderTraversal(TreeNode* root) {
-        std::vector<int> ans;
-        func(root, ans);
-        return ans;
+      vector<int> post;
+        if(root == NULL)
+            return post;
+        
+        stack<TreeNode*> st1, st2;
+        st1.push(root);
+        
+        while(!st1.empty()){
+            TreeNode* temp= st1.top();
+            st1.pop();
+            st2.push(temp);
+            
+            if(temp->left != NULL)
+                st1.push(temp->left);
+            
+            if(temp->right != NULL)
+                st1.push(temp->right);
+            
+        }
+        while(!st2.empty()){
+            post.push_back(st2.top()->val);
+            st2.pop();
+        }
+        return post;
     }
 };
