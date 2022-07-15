@@ -9,22 +9,30 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-#include<bits/stdc++.h>
 class Solution {
 public:
-    
-    void func(TreeNode* root, vector<int>& ans){
-      if(root == NULL)
-        return ;  
-        func(root->left, ans);
-        ans.push_back(root->val);
-        func(root->right, ans);
-        
-    }
     vector<int> inorderTraversal(TreeNode* root) {
+       std::vector<int> in;
+        if(root == NULL)
+            return in;
         
-        std::vector<int> ans;
-        func(root, ans);
-        return ans;
+        stack<TreeNode*> st;
+        TreeNode* temp= root;
+        
+        while(true){
+            if(temp != NULL){
+                st.push(temp);
+                temp= temp->left;
+            }
+            else{
+                if(st.empty() )
+                    break;
+                temp= st.top();
+                st.pop();
+                in.push_back(temp->val);
+                temp= temp->right;
+            }   
+        }
+        return in;
     }
 };
