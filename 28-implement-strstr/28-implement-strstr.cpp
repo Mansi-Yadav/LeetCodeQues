@@ -19,8 +19,7 @@ public:
                     return i;
                 
                 j++;
-                flag = true;
-                temp+=haystack[i];   
+                  
             }
            
             
