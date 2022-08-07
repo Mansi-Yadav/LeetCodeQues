@@ -25,7 +25,7 @@ public:
         vector<int> temp;
         
         inorder(root, temp);
-        sort(temp.begin(), temp.end());
+        //sort(temp.begin(), temp.end());
         
         return temp[k-1];
     }
