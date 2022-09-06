@@ -9,19 +9,14 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        if(head==NULL)
+        if(head == NULL)
             return false;
-        ListNode* slow= head;
-        ListNode* fast= head;
-        
-        while( fast->next!= NULL && fast->next->next != NULL){
-            slow= slow->next;
-            fast= fast->next->next;
-            // if(fast != NULL)
-            //     fast= fast->next;
-            
-            if(slow == fast)
+        unordered_set<ListNode*> mpp;
+        while(head->next != NULL){
+            if(mpp.find(head) != mpp.end())
                 return true;
+            mpp.insert(head);
+            head= head->next;
         }
         return false;
     }
